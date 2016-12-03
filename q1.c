@@ -18,39 +18,56 @@ int main (int argc, char *argv[]) {
 	for (i = 0; input[i] != '\0'; i++) {
 		if (input[i] == 'L' || input[i] == 'R') {
 			int j = i + 1;
+			int numSteps = 0;
+			while (input[j] != ',') {
+				if (input[j] == '\0') break;
+				numSteps = numSteps * 10;
+				numSteps += input[j] - '0'; //convert char to int
+				j++;	
+			}
+			currentDirection = newDirection(currentDirection, input[i]);
+			if (currentDirection == 'U') numUp += numSteps;
+			else if (currentDirection == 'D') numDown += numSteps;
+			else if (currentDirection == 'L') numLeft += numSteps;
+			else if (currentDirection == 'R') numRight += numSteps;
 		}
-
 	}
+
+	//Calculate the final distance
+	int finalDistance = abs(numUp-numDown) + abs(numLeft-numRight);
+	printf("The final distance is: %d\n", finalDistance);
 	return EXIT_SUCCESS;
 }
+
 
 //oldDirection = direction you are currently facing (U/D/L/R)
 //move = the move you made (L/R)
 char newDirection (char oldDirection, char move) {
+	char result = '\0';
 	if (oldDirection == 'U') { //facing up
 		if (move == 'L') {
-			newDirection = 'L';
+			result = 'L';
 		} else if (move == 'R') {
-			newDirection = 'R';
+			result = 'R';
 		}
 	} else if (oldDirection == 'D') { //facing down
 		if (move == 'L') {
-			newDirection = 'R';
+			result = 'R';
 		} else if (move == 'R') {
-			newDirection = 'L';
+			result = 'L';
 		}
 	} else if (oldDirection == 'L') { //facing left
 		if (move == 'L') {
-			newDirection = 'D';
+			result = 'D';
 		} else if (move == 'R') {
-			newDirection = 'U';
+			result = 'U';
 		}
 	} else if (oldDirection == 'R') { //facing right
 		if (move == 'L') {
-			newDirection = 'U';
+			result = 'U';
 		} else if (move == 'R') {
-			newDirection = 'D';
+			result = 'D';
 		}
 	}
-	return newDirection;
+	return result;
 }
