@@ -9,7 +9,7 @@ int main (int argc, char *argv[]) {
 	int numLeft = 0;
 	int numUp = 0;
 	int numDown = 0;
-	char *input = "R1, R3, L2, L5, L2, L1, R3, L4, R2, L2, L4, R2, L1, R1, L2, R3, L1, L4, R2, L5, R3, R4, L1, R2, L1, R3, L4, R5, L4, L5, R5, L3, R2, L3, L3, R1, R3, L4, R2, R5, L4, R1, L1, L1, R5, L2, R1, L2, R188, L5, L3, R5, R1, L2, L4, R3, R5, L3, R3, R45, L4, R4, R72, R2, R3, L1, R1, L1, L1, R192, L1, L1, L1, L4, R1, L2, L5, L3, R5, L3, R3, L4, L3, R1, R4, L2, R2, R3, L5, R3, L1, R1, R4, L2, L3, R1, R3, L4, L3, L4, L2, L2, R1, R3, L5, L1, R4, R2, L4, L1, R3, R3, R1, L5, L2, R4, R4, R2, R1, R5, R5, L4, L1, R5, R3, R4, R5, R3, L1, L2, L4, R1, R4, R5, L2, L3, R4, L4, R2, L2, L4, L2, R5, R1, R4, R3, R5, L4, L4, L5, L5, R3, R4, L1, L3, R2, L2, R1, L3, L5, R5, R5, R3, L4, L2, R4, R5, R1, R4, L3";
+	char *input = "R1, R3, L2, L5, L2, L1, R3, L4, R2, L2, L4, R2, L1, R1, L2, R3, L1, L4, R2, L5, R3, R4, L1, R2, L1, R3, L4, R5, L4, L5, R5, L3, R2, L3, L3, R1, R3, L4, R2, R5, L4, R1, L1, L1, R5, L2, R1, L2, R188, L5, L3, R5, R1, L2, L4, R3, R5, L3, R3, R45, L4, R4, R72, R2, R3, L1, R1, L1, L1, R192, L1, L1, L1, L4, R1, L2, L5, L3, R5, L3, R3, L4, L3, R1, R4, L2, R2, R3, L5, R3, L1, R1, R4, L2, L3, R1, R3, L4, L3, L4, L2, L2, R1, R3, L5, L1, R4, R2, L4, L1, R3, R3, R1, L5, L2, R4, R4, R2, R1, R5, R5, L4, L1, R5, R3, R4, R5, R3, L1, L2, L4, R1, R4, R5, L2, L3, R4, L4, R2, L2, L4, L2, R5, R1, R4, R3, R5, L4, L4, L5, L5, R3, R4, L1, L3, R2, L2, R1, L3, L5, R5, R5, R3, L4, L2, R4, R5, R1, R4, L3,"; //I added a comma to the end of the input
 
 	char currentDirection = 'U';
 
@@ -17,14 +17,13 @@ int main (int argc, char *argv[]) {
 	int i = 0;
 	for (i = 0; input[i] != '\0'; i++) {
 		if (input[i] == 'L' || input[i] == 'R') {
-			int j = i + 1;
 			int numSteps = 0;
-			while (input[j] != ',') {
-				if (input[j] == '\0') break;
+			int j;
+			for (j = i + 1; input[j] != ','; j++) { //Loop across the numbers following the 'L'/'R' char;
 				numSteps = numSteps * 10;
 				numSteps += input[j] - '0'; //convert char to int
-				j++;	
 			}
+
 			currentDirection = newDirection(currentDirection, input[i]);
 			if (currentDirection == 'U') numUp += numSteps;
 			else if (currentDirection == 'D') numDown += numSteps;
@@ -39,9 +38,10 @@ int main (int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
-
-//oldDirection = direction you are currently facing (U/D/L/R)
-//move = the move you made (L/R)
+//Takes 2 arguments:
+//    oldDirection = direction you are currently facing (U/D/L/R)
+//    move = the move you made (L/R)
+//Returns the new direction you are facing (U/D/L/R)
 char newDirection (char oldDirection, char move) {
 	char result = '\0';
 	if (oldDirection == 'U') { //facing up
