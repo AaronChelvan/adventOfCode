@@ -52,7 +52,8 @@ invalidLeft = ['1','2','5','A','D'] #numbers for which a 'left' move is invalid
 invalidRight = ['1','4','9','C','D'] #numbers for which a 'right' move is invalid
 
 for line in inputText:
-	currentIndex = [2,0] #the 2D list index location of 5, which is the starting point
+	currentIndex = [0,2] #the 2D list index location of the last button to be pressed
+	                     #initially set to the index location of 5
 	for move in line:
 		if move == 'U' and keypad[currentIndex[0]][currentIndex[1]] not in invalidUp:
 			currentIndex[1] -= 1
