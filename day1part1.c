@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
+//Takes 2 arguments:
+//    oldDirection = direction you are currently facing (U/D/L/R)
+//    move = the move you made (L/R)
+//Returns the new direction you are facing (U/D/L/R)
 char newDirection (char oldDirection, char move);
 
 int main (int argc, char *argv[]) {
@@ -38,10 +41,6 @@ int main (int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
-//Takes 2 arguments:
-//    oldDirection = direction you are currently facing (U/D/L/R)
-//    move = the move you made (L/R)
-//Returns the new direction you are facing (U/D/L/R)
 char newDirection (char oldDirection, char move) {
 	char result = '\0';
 	if (oldDirection == 'U') { //facing up
