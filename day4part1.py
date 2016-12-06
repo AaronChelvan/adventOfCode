@@ -27,7 +27,7 @@ for line in lines:
 	while True:
 		numSwaps = 0
 		i = 0
-		while (i < len(letterFreq)-1):
+		while i < len(letterFreq)-1:
 			#Sort the list in order of highest to lowest frequency
 			if letterFreq[i][1] < letterFreq[i+1][1]: 
 				temp = letterFreq[i]
@@ -49,7 +49,7 @@ for line in lines:
 	#Find what the checksum should be
 	i = 0
 	checksumLetters = []
-	while (i < 5):
+	while i < 5:
 		checksumLetters.append(letterFreq[i][0])
 		i += 1
 	calculatedChecksum = ''.join(checksumLetters)
