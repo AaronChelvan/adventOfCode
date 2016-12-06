@@ -4,7 +4,7 @@ def checkPossibleTriangle (num1, num2, num3):
 	if num1 + num2 > num3 and num2 + num3 > num1 and num1 + num3 > num2:
 		return 1
 
-with open('day3part1_input.txt') as f: #'day3part1_input.txt' contains the input
+with open('day3_input.txt') as f: #'day3_input.txt' contains the input
     lines = f.readlines()
 
 numPossibleTriangles = 0

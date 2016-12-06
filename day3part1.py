@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-with open('day3part1_input.txt') as f: #'day3part1_input.txt' contains the input
+with open('day3_input.txt') as f: #'day3_input.txt' contains the input
     lines = f.readlines()
 
 numPossibleTriangles = 0

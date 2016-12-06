@@ -2,7 +2,7 @@
 
 import re
 
-with open('day4part1_input.txt') as f: #'day4part1_input.txt' contains the input
+with open('day4_input.txt') as f: #'day4_input.txt' contains the input
 	lines = f.readlines()
 
 sectorIDsum = 0
